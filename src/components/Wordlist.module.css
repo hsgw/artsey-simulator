@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.word {
+  display: flex;
+  margin: 0 1em;
+  white-space: nowrap;
+}
+
+.charContainer {
+  .char {
+    margin: 0 0.01em;
+  }
+  .next {
+    color: blue;
+  }
+  .wrong {
+    color: red;
+  }
+  .correct {
+    color: olivedrab;
+  }
+  .main {
+  }
+  .sub {
+    color: gray;
+  }
+}

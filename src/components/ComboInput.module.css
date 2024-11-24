@@ -1,0 +1,7 @@
+.input {
+  min-height: 300px;
+  &.focus {
+    background-color: azure;
+    outline: none;
+  }
+}
