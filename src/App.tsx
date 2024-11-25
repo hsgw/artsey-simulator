@@ -1,5 +1,6 @@
 import styles from "./App.module.css";
 import Artsey from "./components/Artsey";
+import "./Global.css";
 
 function App() {
   return (

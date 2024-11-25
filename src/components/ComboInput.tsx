@@ -9,7 +9,6 @@ import Wordlist from "./Wordlist";
 
 type Props = {
   config: Config;
-  onNextCharChange: (nextChar: string) => void;
 };
 
 type PrevInput = {
@@ -19,7 +18,6 @@ type PrevInput = {
 
 export default function ComboInput({
   config: { keyBind, comboTimeout, wordCount, practiceMode },
-  onNextCharChange,
 }: Props) {
   const generateWords = () => {
     const words = (RandomWords.generate(wordCount) as string[]).map((word) =>
@@ -55,10 +53,6 @@ export default function ComboInput({
     reset();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wordCount]);
-
-  useEffect(() => {
-    if (nextChar) onNextCharChange(nextChar);
-  }, [nextChar, onNextCharChange]);
 
   // Process keycodes and update enteredString
   useEffect(() => {
@@ -118,12 +112,17 @@ export default function ComboInput({
       }}
     >
       {!isFocus && <div className={styles.placeholder}>Focus to type</div>}
-      <Wordlist typedString={enteredString} wordList={wordList} />
+      <Wordlist
+        typedString={enteredString}
+        wordList={wordList}
+        // isOpenHint={practiceMode && isFocus}
+        isOpenHint={practiceMode}
+      />
       <div className={styles.prevInput}>
         <div>
-          Prev Input:
+          Input:
           <span className={styles.char}>{prevInput.char}</span>
-          <span className={styles.key}>{prevInput.key}</span>
+          <span className={styles.key}>[{prevInput.key}]</span>
         </div>
       </div>
     </div>

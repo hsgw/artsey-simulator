@@ -10,7 +10,7 @@
 }
 
 header {
-  margin-bottom: 3rem;
+  margin-bottom: var(--section-margin);
 }
 
 .title {
@@ -28,7 +28,7 @@ header {
 }
 
 main {
-  margin-bottom: 3rem;
+  margin-bottom: var(--section-margin);
 }
 
 footer {

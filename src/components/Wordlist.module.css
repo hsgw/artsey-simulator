@@ -1,30 +1,52 @@
 .container {
   display: flex;
   flex-wrap: wrap;
+  row-gap: 1em;
+  column-gap: 2em;
+  margin: 0 1em;
 }
 
 .word {
   display: flex;
-  margin: 0 1em;
+  align-items: baseline;
   white-space: nowrap;
+  font-size: 1.25em;
 }
 
-.charContainer {
-  .char {
-    margin: 0 0.01em;
+.char {
+  margin: 0 0.025em;
+  position: relative;
+}
+
+@keyframes cursor-blink {
+  0%,
+  49% {
+    border-bottom: 2px solid #000;
   }
-  .next {
-    color: blue;
+  50%,
+  100% {
+    border-bottom: 2px solid transparent;
   }
-  .wrong {
-    color: red;
-  }
-  .correct {
-    color: olivedrab;
-  }
-  .main {
-  }
-  .sub {
-    color: gray;
-  }
+}
+
+.next {
+  position: relative;
+  font-weight: 900;
+  border-bottom: 2px solid black;
+  animation: cursor-blink 1s linear infinite alternate;
+}
+
+.wrong {
+  color: red;
+}
+
+.correct {
+  color: olivedrab;
+}
+
+.hint {
+  position: absolute;
+  bottom: 1.75em;
+  left: -1em;
+  z-index: 50;
 }
