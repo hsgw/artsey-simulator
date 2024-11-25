@@ -117,6 +117,7 @@ export default function ComboInput({
         e.preventDefault();
       }}
     >
+      {!isFocus && <div className={styles.placeholder}>Focus to type</div>}
       <Wordlist typedString={enteredString} wordList={wordList} />
       <div className={styles.prevInput}>
         <div className={styles.key}>{prevInput.key}</div>
