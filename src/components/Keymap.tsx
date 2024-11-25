@@ -1,8 +1,17 @@
 import { useMemo } from "react";
 import { Combos, Layout } from "../utils/artsey";
 import styles from "./Keymap.module.css";
+import { KeyBind } from "../utils/config";
 
-export default function Keymap({ char }: { char: string }) {
+export default function Keymap({
+  char,
+  isHighlighted,
+  keyBind,
+}: {
+  char: string;
+  isHighlighted?: boolean;
+  keyBind: KeyBind;
+}) {
   const [keymap, printChar] = useMemo(() => {
     const c = char === " " ? "Space" : char;
     let printChar = c;
@@ -21,7 +30,11 @@ export default function Keymap({ char }: { char: string }) {
   }, [char]);
 
   return (
-    <div className={styles.container}>
+    <div
+      className={[styles.container, isHighlighted ? styles.highlight : null]
+        .filter(Boolean)
+        .join(" ")}
+    >
       <div className={styles.char}>{printChar}</div>
       <div className={styles.keymap}>
         {Layout.map((row, i) => (
@@ -38,7 +51,7 @@ export default function Keymap({ char }: { char: string }) {
                     .filter(Boolean)
                     .join(" ")}
                 >
-                  {keycode}
+                  {keyBind[keycode]}
                 </div>
               );
             })}

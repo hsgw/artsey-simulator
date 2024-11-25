@@ -9,6 +9,7 @@ import Wordlist from "./Wordlist";
 
 type Props = {
   config: Config;
+  onChangeNextChar: (nextChar: string | undefined) => void;
 };
 
 type PrevInput = {
@@ -18,6 +19,7 @@ type PrevInput = {
 
 export default function ComboInput({
   config: { keyBind, comboTimeout, wordCount, practiceMode },
+  onChangeNextChar,
 }: Props) {
   const generateWords = () => {
     const words = (RandomWords.generate(wordCount) as string[]).map((word) =>
@@ -45,8 +47,10 @@ export default function ComboInput({
     let next = (wordList.join(" ") + " ")[enteredString.length];
     if (next) {
       if (next === " ") next = "Space";
+      onChangeNextChar(next);
       return next;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enteredString, wordList]);
 
   useEffect(() => {
@@ -94,37 +98,40 @@ export default function ComboInput({
   }, [keyBuffer]);
 
   return (
-    <div
-      className={`${styles.input} ${isFocus ? styles.focus : ""}`}
-      tabIndex={0}
-      onFocus={() => setIsFocus(true)}
-      onBlur={() => setIsFocus(false)}
-      onKeyDown={(e) => {
-        if (e.repeat) return;
-        const keycode = Object.keys(keyBind).find(
-          (key) => keyBind[key as Keycode] === e.key
-        ) as Keycode | undefined;
+    <>
+      <h2>Input</h2>
+      <div
+        className={`${styles.input} ${isFocus ? styles.focus : ""}`}
+        tabIndex={0}
+        onFocus={() => setIsFocus(true)}
+        onBlur={() => setIsFocus(false)}
+        onKeyDown={(e) => {
+          if (e.repeat) return;
+          const keycode = Object.keys(keyBind).find(
+            (key) => keyBind[key as Keycode] === e.key
+          ) as Keycode | undefined;
 
-        if (keycode && !keyBuffer.includes(keycode)) {
-          setKeyBuffer([...keyBuffer, keycode]);
-        }
-        e.preventDefault();
-      }}
-    >
-      {!isFocus && <div className={styles.placeholder}>Focus to type</div>}
-      <Wordlist
-        typedString={enteredString}
-        wordList={wordList}
-        // isOpenHint={practiceMode && isFocus}
-        isOpenHint={practiceMode}
-      />
-      <div className={styles.prevInput}>
-        <div>
-          Input:
-          <span className={styles.char}>{prevInput.char}</span>
-          <span className={styles.key}>[{prevInput.key}]</span>
+          if (keycode && !keyBuffer.includes(keycode)) {
+            setKeyBuffer([...keyBuffer, keycode]);
+          }
+          e.preventDefault();
+        }}
+      >
+        {!isFocus && <div className={styles.placeholder}>Focus to type</div>}
+        <Wordlist
+          typedString={enteredString}
+          wordList={wordList}
+          // isOpenHint={practiceMode && isFocus}
+          isOpenHint={practiceMode}
+        />
+        <div className={styles.prevInput}>
+          <div>
+            Input:
+            <span className={styles.char}>{prevInput.char}</span>
+            <span className={styles.key}>[{prevInput.key}]</span>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

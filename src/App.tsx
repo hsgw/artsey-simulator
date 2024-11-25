@@ -1,4 +1,5 @@
 import styles from "./App.module.css";
+import Accordion from "./components/Accordion";
 import Artsey from "./components/Artsey";
 import "./Global.css";
 
@@ -6,21 +7,42 @@ function App() {
   return (
     <div className={styles.root}>
       <header>
-        <h1 className={styles.title}>Artsey Simulator</h1>
+        <h1 className={styles.title}>
+          <div>Artsey Simulator</div>
+          <div className={styles.subtitle}>
+            by <a href="https://5z6p.com">5z6p Instruments</a>
+          </div>
+        </h1>
         <div className={styles.description}>
           <p>
             これは手元のキーボードでArtseyキーマップを試すためのシミュレータです。
           </p>
           <p>
-            Artseyキーマップのうち、
-            <b>アルファベット+スペース+バックスペース</b>が入力できます。
-            <br />
-            練習モードでは次の文字のキーマップを表示しながら入力します。
-          </p>
-          <p>
             Artseyキーマップについて書いた記事は<a href="#">こちら</a>。
           </p>
         </div>
+        <Accordion title="使い方" defaultOpen>
+          <p>
+            Artseyキーマップのうち、
+            <b>アルファベット+スペース+バックスペース</b>が入力できます。
+          </p>
+          <p>
+            Artseyの左手キーマップ用に作られています。
+            <br />
+            キーバインドを変更してkeymapを読み替えることで右手でも入力できます。
+          </p>
+          <p>
+            練習モードでは次の文字のキーマップをキーマップリスト上でハイライト表示します。(デフォルトでON)
+            <br />
+            Artsey特有の運指を気軽に試せます。
+          </p>
+          <p>
+            スペースだけ4key同時押しのため難易度が高めです。
+            <br />
+            Combo
+            Timeoutを増やすと同時押し受付時間が調整出来るので長めにしてください。
+          </p>
+        </Accordion>
       </header>
       <main>
         <Artsey />

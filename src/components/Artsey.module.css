@@ -1,7 +1,5 @@
-.artseyInput {
-  margin-bottom: 4rem;
-}
-
-.artseyConfig {
+.keymapList,
+.input,
+.config {
   margin-bottom: 4rem;
 }

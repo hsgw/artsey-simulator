@@ -1,0 +1,22 @@
+.title {
+  background-color: transparent;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  padding: 0;
+}
+
+.closed {
+  display: none;
+}
+
+.open {
+  display: block;
+}
+
+.arrow {
+  font-weight: 400;
+  margin-left: 1em;
+  font-size: 0.5em;
+}

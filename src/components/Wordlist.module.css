@@ -33,7 +33,7 @@
   position: relative;
   font-weight: 900;
   border-bottom: 2px solid black;
-  animation: cursor-blink 1s linear infinite alternate;
+  animation: cursor-blink 0.8s linear infinite alternate;
 }
 
 .wrong {
@@ -42,11 +42,4 @@
 
 .correct {
   color: olivedrab;
-}
-
-.hint {
-  position: absolute;
-  bottom: 1.75em;
-  left: -1em;
-  z-index: 50;
 }

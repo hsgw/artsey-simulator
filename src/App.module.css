@@ -3,7 +3,7 @@
   max-width: 720px;
   margin: 0.5rem auto;
 
-  font-family: "Noto Sans JP", serif;
+  font-family: "Noto Sans JP", sans-serif;
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
@@ -11,20 +11,27 @@
 
 header {
   margin-bottom: var(--section-margin);
+  p {
+    margin-bottom: 1rem;
+  }
 }
 
 .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
   width: 100%;
   border-bottom: 1px solid black;
   margin-bottom: 1.5rem;
   font-weight: 900;
+  .subtitle {
+    font-size: 0.5em;
+    font-weight: 400;
+  }
 }
 
 .description {
   margin-bottom: 1.5rem;
-  p {
-    margin-bottom: 1rem;
-  }
 }
 
 main {

@@ -1,3 +1,7 @@
 :root {
-  --section-margin: 5rem;
+  --section-margin: 3rem;
+}
+
+a:visited {
+  color: blue;
 }

@@ -1,10 +1,8 @@
-import Keymap from "./Keymap";
 import styles from "./Wordlist.module.css";
 
 export default function Wordlist({
   typedString,
   wordList,
-  isOpenHint,
 }: {
   typedString: string;
   wordList: string[];
@@ -43,13 +41,8 @@ export default function Wordlist({
                     .join(" ")}
                 >
                   {isSpace && isNext && "␣"}
-                  {isWrong ? typedChar : char}
+                  {isWrong ? (typedChar === " " ? "␣" : typedChar) : char}
                 </div>
-                {isOpenHint && isNext && (
-                  <div className={styles.hint}>
-                    <Keymap char={char} />
-                  </div>
-                )}
               </div>
             );
           })}
