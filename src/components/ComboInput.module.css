@@ -1,8 +1,6 @@
 .input {
   position: relative;
-  min-height: 300px;
   &.focus {
-    background-color: azure;
     outline: none;
   }
 }
@@ -18,4 +16,15 @@
   z-index: 100;
   font-size: 3rem;
   font-weight: 900;
+}
+
+.prevInput {
+  width: 100%;
+  margin-top: 1em;
+  padding: 0 1em;
+  font-size: 0.8em;
+  border-top: 1px solid black;
+  span {
+    margin-left: 0.5em;
+  }
 }

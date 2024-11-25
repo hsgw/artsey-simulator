@@ -39,7 +39,7 @@ export default function ComboInput({
   const [keyBuffer, setKeyBuffer] = useState<Keycode[]>([]);
   const [enteredString, setEnteredString] = useState("");
   const [prevInput, setPrevInput] = useState<PrevInput>({
-    key: "",
+    key: "None",
     char: undefined,
   });
 
@@ -88,8 +88,8 @@ export default function ComboInput({
         }
         setPrevInput(() => {
           return {
-            key: keyBuffer.join(","),
-            char: enteredChar,
+            key: keyBuffer.join("+"),
+            char: enteredChar ? enteredChar : "invalid",
           };
         });
         setKeyBuffer(() => []);
@@ -120,9 +120,10 @@ export default function ComboInput({
       {!isFocus && <div className={styles.placeholder}>Focus to type</div>}
       <Wordlist typedString={enteredString} wordList={wordList} />
       <div className={styles.prevInput}>
-        <div className={styles.key}>{prevInput.key}</div>
-        <div className={styles.char}>
-          {prevInput.char ? prevInput.char : "Invalid"}
+        <div>
+          Prev Input:
+          <span className={styles.char}>{prevInput.char}</span>
+          <span className={styles.key}>{prevInput.key}</span>
         </div>
       </div>
     </div>
