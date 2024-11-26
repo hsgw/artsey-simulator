@@ -66,7 +66,7 @@ export default function ComboConfig({
           <div className={styles.label}>milliseconds</div>
         </div>
       </div>
-      <div>
+      <div hidden>
         <h3>Word Count</h3>
         <div className={[styles.inner, styles.wordCount].join(" ")}>
           <input

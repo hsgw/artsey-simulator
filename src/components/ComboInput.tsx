@@ -68,63 +68,103 @@ export default function ComboInput({
   // Process keycodes and update enteredString
   useEffect(() => {
     const timeoutId = setTimeout(() => {
+      if (keyBuffer.length === 0) return;
+
       const enteredChar = processKeycodes(keyBuffer);
 
-      if (keyBuffer.length) {
-        if (wpm !== undefined) {
-          if (enteredChar === "Space") reset();
-          setKeyBuffer(() => []);
+      // check game state is over
+      if (wpm !== undefined) {
+        // wait for Space
+        if (enteredChar === "Space") reset();
+        else setKeyBuffer(() => []);
+        return;
+      }
+
+      // reset keybuffer and set prevInput
+      setPrevInput(() => {
+        return {
+          key: keyBuffer.join("+"),
+          char: enteredChar ? enteredChar : "invalid",
+        };
+      });
+      setKeyBuffer(() => []);
+
+      // ignore invalid enter
+      if (!enteredChar) {
+        return;
+      }
+
+      // check practice mode and start timer if not started
+      if (!practiceMode && !startTime) {
+        setStartTime(() => new Date());
+      }
+
+      // first process backspace
+      if (enteredChar === "Backspace") {
+        if (enteredString.length > 0) {
+          setEnteredString((prev) => prev.slice(0, -1));
+        }
+        return;
+      }
+
+      // check space beetween words or last
+      if (nextChar === "Space") {
+        if (enteredChar !== "Space") {
+          // ignore non-space char when next is a space between words
           return;
-        }
-        if (!practiceMode && !startTime) {
-          setStartTime(() => new Date());
-        }
-        if (enteredChar) {
-          if (enteredChar === "Backspace") {
-            setEnteredString((prev) => prev.slice(0, -1));
-          } else if (enteredChar === nextChar || nextChar !== "Space") {
-            // Ignore non-space char when next is a space between words
-            if (enteredChar === "Space") {
-              setEnteredString((prev) => prev + " ");
-              if (wordList.join(" ").length === enteredString.length) {
-                if (practiceMode) {
-                  reset();
-                } else {
-                  if (!startTime) return;
-                  const time = new Date().getTime() - startTime.getTime();
-                  const { correctWordCount } = wordList.reduce(
-                    ({ correctWordCount, charCount }, word) => {
-                      if (
-                        enteredString.slice(
-                          charCount,
-                          charCount + word.length
-                        ) === word
-                      ) {
-                        correctWordCount++;
-                      }
-                      return {
-                        correctWordCount,
-                        charCount: charCount + word.length + 1,
-                      };
-                    },
-                    { correctWordCount: 0, charCount: 0 }
-                  );
-                  setWpm(() => (correctWordCount / time) * 1000 * 60);
-                  setStartTime(() => undefined);
-                }
-              }
+        } else {
+          setEnteredString((prev) => prev + " ");
+
+          // check if game is over
+          if (wordList.join(" ").length === enteredString.length) {
+            if (practiceMode) {
+              reset();
+              return;
             } else {
-              setEnteredString((prev) => prev + enteredChar);
+              // game over
+              if (!startTime) {
+                console.error("no start time");
+                return;
+              }
+
+              // calculate wpm
+              const time = new Date().getTime() - startTime.getTime();
+              const { correctWordCount } = wordList.reduce(
+                ({ correctWordCount, charCount }, word) => {
+                  const enteredWord = enteredString.slice(
+                    charCount,
+                    charCount + word.length
+                  );
+
+                  if (word === enteredWord) {
+                    correctWordCount += 1;
+                  }
+
+                  return {
+                    correctWordCount,
+                    charCount: charCount + word.length + 1,
+                  };
+                },
+                { correctWordCount: 0, charCount: 0 }
+              );
+              const wpm = (correctWordCount * 60) / (time / 1000);
+              setWpm(() => wpm);
+              console.log({ correctWordCount, time, wpm });
+              return;
             }
           }
+          return;
         }
-        setPrevInput(() => {
-          return {
-            key: keyBuffer.join("+"),
-            char: enteredChar ? enteredChar : "invalid",
-          };
-        });
-        setKeyBuffer(() => []);
+      }
+
+      // normal update
+      switch (enteredChar) {
+        case "Space":
+          setEnteredString((prev) => prev + " ");
+          break;
+        default:
+          setEnteredString((prev) => prev + enteredChar);
+          break;
       }
     }, comboTimeout);
     return () => clearTimeout(timeoutId);

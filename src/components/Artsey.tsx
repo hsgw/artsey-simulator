@@ -22,7 +22,7 @@ export default function Artsey() {
         <Accordion title="Keymap List" defaultOpen>
           <KeymapList
             highlightedChar={practiceMode ? nextChar : undefined}
-            keyBind={keyBind}
+            // keyBind={keyBind}
           />
         </Accordion>
       </div>

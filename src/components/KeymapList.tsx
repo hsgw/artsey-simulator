@@ -8,7 +8,7 @@ export default function KeymapList({
   keyBind,
 }: {
   highlightedChar: string | undefined;
-  keyBind: KeyBind;
+  keyBind?: KeyBind;
 }) {
   return (
     <div className={styles.container}>
