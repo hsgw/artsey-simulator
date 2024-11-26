@@ -44,4 +44,8 @@
   .wpm {
     font-weight: 900;
   }
+  .reset {
+    cursor: pointer;
+    margin-left: 1em;
+  }
 }

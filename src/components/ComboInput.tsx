@@ -213,6 +213,16 @@ export default function ComboInput({
                   ? "Mesuring..."
                   : wpm === undefined && "Type to start mesuring"}
             </span>
+            <a
+              className={styles.reset}
+              href="javascript:void(0)"
+              onClick={() => {
+                reset();
+                return false;
+              }}
+            >
+              Reset
+            </a>
           </div>
         </div>
       </div>

@@ -51,6 +51,7 @@ function App() {
         <Artsey />
       </main>
       <footer>
+        <h2>リンク</h2>
         <h3>ソースコード</h3>
         <ul>
           <li>
