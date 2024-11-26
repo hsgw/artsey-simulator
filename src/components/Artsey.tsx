@@ -5,7 +5,8 @@ import ComboInput from "./ComboInput";
 
 import styles from "./Artsey.module.css";
 import Accordion from "./Accordion";
-import KeymapList from "./keymapList";
+import KeymapList from "./KeymapList";
+import StringToKeymaps from "./StringToKeymaps";
 
 export default function Artsey() {
   const [keyBind, setKeyBind] = useState(defaultConfig.keyBind);
@@ -16,7 +17,7 @@ export default function Artsey() {
   const [nextChar, setNextChar] = useState<string | undefined>(undefined);
 
   return (
-    <>
+    <div translate="no">
       <div className={styles.keymapList}>
         <Accordion title="Keymap List" defaultOpen>
           <KeymapList highlightedChar={nextChar} keyBind={keyBind} />
@@ -44,6 +45,11 @@ export default function Artsey() {
           />
         </Accordion>
       </div>
-    </>
+      <div className={styles.extra}>
+        <Accordion title="Extra">
+          <StringToKeymaps />
+        </Accordion>
+      </div>
+    </div>
   );
 }

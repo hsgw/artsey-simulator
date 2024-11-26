@@ -1,0 +1,14 @@
+.container {
+  input {
+    margin-bottom: 1em;
+    width: 100%;
+  }
+}
+
+.keymapList {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 0.5em;
+  column-gap: 0.5em;
+  margin-bottom: 1em;
+}

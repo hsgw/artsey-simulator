@@ -33,6 +33,12 @@ export const Combos: { [key: string]: string } = {
   w: "A_S",
   x: "R_S_T",
   z: "A_R_S_T",
+  '"': "R_Y",
+  ",": "A_Y",
+  "!": "I_T",
+  ".": "A_I",
+  "?": "O_S",
+  "/": "A_O",
   Space: "E_I_O_Y",
   Backspace: "E_R",
 };
