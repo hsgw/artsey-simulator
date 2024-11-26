@@ -8,6 +8,7 @@
 .placeholder {
   position: absolute;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -16,18 +17,31 @@
   z-index: 100;
   font-size: 3rem;
   font-weight: 900;
+  .sub {
+    font-size: 0.5em;
+    font-weight: 400;
+  }
 }
 
-.prevInput {
+.statusBar {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   margin-top: 1em;
   padding: 0 1em;
   font-size: 1em;
-  border-top: 1px solid black;
+  border-top: 2px dotted black;
+}
+
+.status {
+  margin: 0 0.5em;
   span {
     margin-left: 0.5em;
   }
   .char {
     font-weight: 600;
+  }
+  .wpm {
+    font-weight: 900;
   }
 }

@@ -20,7 +20,10 @@ export default function Artsey() {
     <div translate="no">
       <div className={styles.keymapList}>
         <Accordion title="Keymap List" defaultOpen>
-          <KeymapList highlightedChar={nextChar} keyBind={keyBind} />
+          <KeymapList
+            highlightedChar={practiceMode ? nextChar : undefined}
+            keyBind={keyBind}
+          />
         </Accordion>
       </div>
       <div className={styles.input}>

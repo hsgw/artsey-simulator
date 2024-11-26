@@ -6,7 +6,6 @@ export default function Wordlist({
 }: {
   typedString: string;
   wordList: string[];
-  isOpenHint: boolean;
 }) {
   function renderWordList() {
     let charCount = 0;
