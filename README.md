@@ -2,6 +2,8 @@
 
 Try [Artsey keymap]("https://artsey.io") with your keyboard.
 
+https://hsgw.github.io/artsey-simulator/
+
 ## License
 
 (c) 2024 5z6p Instruments, hsgw  

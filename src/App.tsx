@@ -55,7 +55,7 @@ function App() {
         <h3>ソースコード</h3>
         <ul>
           <li>
-            <a href="#">Github</a>
+            <a href="https://github.com/hsgw/artsey-simulator">Github</a>
             <br />
             ライセンスについてはgithubリポジトリを参照してください。
           </li>
