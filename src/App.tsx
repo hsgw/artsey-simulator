@@ -18,7 +18,8 @@ function App() {
             これは手元のキーボードでArtseyキーマップを試すためのシミュレータです。
           </p>
           <p>
-            Artseyキーマップについて書いた記事は<a href="#">こちら</a>。
+            Artseyキーマップについて書いた記事は
+            <a href="https://5z6p.com/articles/advent2024-index/">こちら</a>。
           </p>
         </div>
         <Accordion title="使い方" defaultOpen>
